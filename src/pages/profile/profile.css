@@ -1,0 +1,13 @@
+.profileContainer {
+  display: flex;
+  width: 100%;
+}
+
+.leftProfileContainer {
+  flex: 8;
+  padding: 20px;
+}
+
+.rightProfileContainer {
+  flex: 10;
+}

@@ -1,0 +1,13 @@
+.homeContainer {
+  display: flex;
+  width: 100%;
+}
+
+.leftHomeContainer {
+  flex: 8;
+  padding: 20px;
+}
+
+.homeFilterButton {
+  margin-top: 30px;
+}

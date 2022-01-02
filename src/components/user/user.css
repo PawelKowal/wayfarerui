@@ -1,0 +1,49 @@
+.user {
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+}
+
+.userWrapper {
+  display: flex;
+  padding: 30px;
+}
+
+.userInfoWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userInfo {
+  flex: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.userEditButton {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+}
+
+.userUsername {
+  font-size: 24px;
+}
+
+.userProfileDescription {
+  font-weight: 300;
+}
+
+.avatarWrapper {
+  flex: 1;
+}
+
+.userAvatar {
+  width: 100%;
+  max-height: 500px;
+  object-fit: cover;
+}

@@ -1,0 +1,42 @@
+.barContainer {
+  height: 50px;
+  width: 100%;
+  background-color: #2fd138;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  color: white;
+}
+
+.barLeft {
+  flex: 4;
+}
+
+.logo {
+  font-size: 28px;
+  margin-left: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+}
+
+.barCenter {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.barRight {
+  flex: 4;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 20px;
+}
+
+.barIcon {
+  cursor: pointer;
+  color: white;
+}
