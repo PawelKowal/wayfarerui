@@ -8,7 +8,12 @@ import { format } from "timeago.js";
 import axios from "../../api/axios";
 import { Link } from "react-router-dom";
 
-export default function Post({ post }) {
+export default function Post({
+  post,
+  setMapCenterLat,
+  setMapCenterLng,
+  disableShowOnMapButton,
+}) {
   const [currentPost, setCurrentPost] = useState(post);
   const [showComments, setShowComments] = useState(false);
   const PF = process.env.REACT_APP_IMAGES;
@@ -43,6 +48,12 @@ export default function Post({ post }) {
     refreshPostApi();
   };
 
+  const showOnMapButtonHandler = (e) => {
+    e.preventDefault();
+    setMapCenterLat(post.latitude);
+    setMapCenterLng(post.longitude);
+  };
+
   return (
     <div className="post">
       <div className="postWrapper">
@@ -64,6 +75,19 @@ export default function Post({ post }) {
             <span className="postDate">
               {format(currentPost.publicationDate)}
             </span>
+          </div>
+          <div>
+            {disableShowOnMapButton ? (
+              ""
+            ) : (
+              <Button
+                variant="contained"
+                style={{ backgroundColor: "#2fd138" }}
+                onClick={showOnMapButtonHandler}
+              >
+                Show on map
+              </Button>
+            )}
           </div>
         </div>
         <div className="postCenter">

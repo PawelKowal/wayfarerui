@@ -1,7 +1,6 @@
 import Bar from "../../components/bar/Bar";
 import Feed from "../../components/feed/Feed";
 import Map from "../../components/map/Map";
-import Share from "../../components/share/Share";
 import "./home.css";
 import axios from "../../api/axios";
 import { useEffect, useState, useContext } from "react";
@@ -12,6 +11,8 @@ export default function Home() {
   const [posts, setPosts] = useState(null);
   const [displayedPosts, setDisplayedPosts] = useState(null);
   const [followedOnly, setFollowedOnly] = useState(false);
+  const [mapCenterLat, setMapCenterLat] = useState(null);
+  const [mapCenterLng, setMapCenterLng] = useState(null);
   const { user } = useContext(AuthContext);
 
   const getAllPostsApi = async () => {
@@ -40,7 +41,8 @@ export default function Home() {
       : setDisplayedPosts(posts);
   }, [posts]);
 
-  const handleFilterButton = () => {
+  const handleFilterButton = (e) => {
+    e.preventDefault();
     followedOnly ? setFollowedOnly(false) : setFollowedOnly(true);
   };
 
@@ -53,7 +55,6 @@ export default function Home() {
       <Bar />
       <div className="homeContainer">
         <div className="leftHomeContainer">
-          <Share refreshPosts={getAllPostsApi} />
           <div className="homeFilterButton">
             <Button
               variant="contained"
@@ -63,9 +64,18 @@ export default function Home() {
               {followedOnly ? "Show all posts" : "Show followed users posts"}
             </Button>
           </div>
-          <Feed posts={displayedPosts} />
+          <Feed
+            posts={displayedPosts}
+            setMapCenterLat={setMapCenterLat}
+            setMapCenterLng={setMapCenterLng}
+          />
         </div>
-        <Map />
+        <Map
+          refresh={getAllPostsApi}
+          posts={displayedPosts}
+          mapCenterLat={mapCenterLat}
+          mapCenterLng={mapCenterLng}
+        />
       </div>
     </div>
   );

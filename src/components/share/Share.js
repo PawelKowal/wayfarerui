@@ -5,7 +5,7 @@ import { useContext, useState, useRef } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "../../api/axios";
 
-export default function Share({ refreshPosts }) {
+export default function Share({ refreshPosts, position }) {
   const { user } = useContext(AuthContext);
   const PF = process.env.REACT_APP_IMAGES;
   const description = useRef();
@@ -39,8 +39,8 @@ export default function Share({ refreshPosts }) {
 
     const post = new FormData();
     post.append("content", description.current.value);
-    post.append("longtitude", 1);
-    post.append("latitude", 2);
+    post.append("longitude", position.lng);
+    post.append("latitude", position.lat);
     post.append("image", image);
 
     description.current.value = "";

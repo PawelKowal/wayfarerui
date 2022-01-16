@@ -11,6 +11,8 @@ import { useParams } from "react-router-dom";
 export default function Profile() {
   const { user } = useContext(AuthContext);
   const [userToShow, setUserToShow] = useState({});
+  const [mapCenterLat, setMapCenterLat] = useState(null);
+  const [mapCenterLng, setMapCenterLng] = useState(null);
   const id = useParams().id;
 
   const getUserApi = async () => {
@@ -41,11 +43,21 @@ export default function Profile() {
           <User user={userToShow} refreshUser={getUserApi} />
           {userToShow &&
             userToShow.posts &&
-            userToShow.posts.map((p) => <Post key={p.postId} post={p} />)}
+            userToShow.posts.map((p) => (
+              <Post
+                key={p.postId}
+                post={p}
+                setMapCenterLat={setMapCenterLat}
+                setMapCenterLng={setMapCenterLng}
+              />
+            ))}
         </div>
-        <div className="rightProfileContainer">
-          <Map />
-        </div>
+        <Map
+          refresh={getUserApi}
+          posts={userToShow.posts}
+          mapCenterLat={mapCenterLat}
+          mapCenterLng={mapCenterLng}
+        />
       </div>
     </div>
   );
