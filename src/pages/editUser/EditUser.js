@@ -21,7 +21,8 @@ export default function EditUser() {
     }
   };
 
-  const handleSubmitDescButton = () => {
+  const handleSubmitDescButton = (e) => {
+    e.preventDefault();
     const updatedUser = new FormData();
     updatedUser.append("userId", user.userId);
     updatedUser.append("username", user.username);

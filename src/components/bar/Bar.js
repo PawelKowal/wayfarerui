@@ -9,7 +9,8 @@ import axios from "../../api/axios";
 export default function Bar() {
   const { user, dispatch } = useContext(AuthContext);
 
-  const handleLogoutButton = async () => {
+  const handleLogoutButton = async (e) => {
+    e.preventDefault();
     localStorage.removeItem("token");
     dispatch({ type: "SET_TOKEN", payload: null });
     try {
