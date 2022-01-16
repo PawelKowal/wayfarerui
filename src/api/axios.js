@@ -10,39 +10,33 @@ export const updateAuthorizationHeader = () => {
     "Bearer " + localStorage.getItem("token");
 };
 
+let refreshTokenPromise;
+
 const createAxiosResponseInterceptor = () => {
   const interceptor = instance.interceptors.response.use(
-    (response) => {
-      return response;
-    },
+    (r) => r,
     (error) => {
-      const config = error.response.config;
-      // Reject promise if usual erro
-      if (error.response.status !== 401) {
-        return Promise.reject(error);
-      }
-      /*
-       * When response code is 401, try to refresh the token.
-       * Eject the interceptor so it doesn't loop in case
-       * token refresh causes the 401 response
-       */
-      instance.interceptors.response.eject(interceptor);
+      if (error.config && error.response && error.response.status === 401) {
+        if (!refreshTokenPromise) {
+          instance.interceptors.response.eject(interceptor);
+          refreshTokenPromise = instance
+            .get("/auth/refresh-token")
+            .then((response) => {
+              createAxiosResponseInterceptor();
+              refreshTokenPromise = null;
+              return response.data.accessToken;
+            });
+        }
 
-      return instance
-        .get("/auth/refresh-token")
-        .then((response) => {
-          localStorage.setItem("token", response.data.accessToken);
+        return refreshTokenPromise.then((token) => {
+          localStorage.setItem("token", token);
+          error.config.headers["Authorization"] = "Bearer " + token;
           updateAuthorizationHeader();
-          config.headers["Authorization"] =
-            "Bearer " + response.data.accessToken;
-          return instance.request(config);
-        })
-        .catch((error) => {
-          return Promise.reject(error);
-        })
-        .finally(() => {
-          createAxiosResponseInterceptor();
+          return instance.request(error.config);
         });
+      }
+      console.log(error);
+      return Promise.reject(error);
     }
   );
 };
