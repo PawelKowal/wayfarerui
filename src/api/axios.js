@@ -21,6 +21,9 @@ const createAxiosResponseInterceptor = () => {
           instance.interceptors.response.eject(interceptor);
           refreshTokenPromise = instance
             .get("/auth/refresh-token")
+            .catch((error) => {
+              localStorage.removeItem("token");
+            })
             .then((response) => {
               createAxiosResponseInterceptor();
               refreshTokenPromise = null;

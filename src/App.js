@@ -3,6 +3,7 @@ import Profile from "./pages/profile/Profile";
 import EditUser from "./pages/editUser/EditUser";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
+import Chat from "./pages/chat/Chat";
 import {
   BrowserRouter as Router,
   Routes,
@@ -54,6 +55,10 @@ function App() {
         <Route
           path="/editUser"
           element={token ? <EditUser /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/chat"
+          element={token ? <Chat /> : <Navigate to="/login" />}
         />
       </Routes>
     </Router>

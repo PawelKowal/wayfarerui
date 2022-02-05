@@ -1,0 +1,27 @@
+.conversationContainer {
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+}
+
+.conversationTopContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.conversationInputContainer {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.conversationInput {
+  flex: 6;
+}
+
+.conversationSendButton {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}

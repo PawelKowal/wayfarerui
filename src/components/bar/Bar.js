@@ -35,7 +35,9 @@ export default function Bar() {
         >
           <Person fontSize="large" className="barIcon" />
         </Link>
-        <Chat fontSize="large" className="barIcon" />
+        <Link to="/chat" style={{ textDecoration: "none" }}>
+          <Chat fontSize="large" className="barIcon" />
+        </Link>
       </div>
       <div className="barRight">
         <Button onClick={handleLogoutButton}>

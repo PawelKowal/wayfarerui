@@ -1,0 +1,44 @@
+.chatContainer {
+  display: flex;
+  width: 100%;
+}
+
+.chatLeftContainerWrapper {
+  flex: 8;
+  padding: 10px;
+}
+
+.chatLeftContainer {
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  padding: 20px;
+}
+
+.chatRightContainerWrapper {
+  flex: 10;
+  padding: 10px;
+}
+
+.chatRightContainer {
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  padding: 20px;
+}
+
+.chatSearchContainer {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.chatSearchInput {
+  flex: 5;
+}
+
+.chatSearchButton {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
