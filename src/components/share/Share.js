@@ -1,5 +1,5 @@
 import "./share.css";
-import { PermMedia, Room } from "@mui/icons-material";
+import { PermMedia } from "@mui/icons-material";
 import { Button, TextField, Popover } from "@mui/material";
 import { useContext, useState, useRef } from "react";
 import { AuthContext } from "../../context/AuthContext";
@@ -79,11 +79,6 @@ export default function Share({ refreshPosts, position }) {
                 onChange={(e) => setImage(e.target.files[0])}
               />
             </label>
-
-            <div className="shareOption">
-              <Room htmlColor="green" className="shareIcon" />
-              <span className="shareOptionText">Location</span>
-            </div>
           </div>
           <Button
             variant="contained"
